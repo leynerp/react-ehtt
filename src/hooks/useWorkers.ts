@@ -11,8 +11,7 @@ export function useWorkers () {
       const filtersKey: string[] = Object.keys(filters);
       const searchWorkers = [...OriginalListOfWorkers.current].filter(worker => {
         return filtersKey.every(key => {
-          console.log(filters[key as FiltersKey])
-          return SearchFilters[key as FiltersKey](worker[key as FiltersKey], filters[key as FiltersKey]);
+          return SearchFilters[key as FiltersKey](worker[key as FiltersKey], filters[key as FiltersKey] as string);
         })
       })
       setWorkers(searchWorkers);
