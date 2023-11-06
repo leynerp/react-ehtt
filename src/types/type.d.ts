@@ -17,10 +17,12 @@ export enum Category {
 
 export interface Filters {
   name: (name: string, search: string) => boolean
-  category: (search: string) => boolean
+  category: (category: string, search: string) => boolean
 }
 
 type FiltersKey = keyof Filters;
+
+type FilterData = { [key in FiltersKey]: string } | undefined;
 
 export type FiltersAction = { type: 'changeName', payload: { name: string } }
 | { type: 'changeCategory', payload: { category: string } }

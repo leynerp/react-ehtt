@@ -1,9 +1,13 @@
 import { useReducer, useState } from 'react';
 import debounce from 'just-debounce-it';
 import { reducerFilter } from '../reducer/filters';
-
-export const useFilters = (reloadWorkers: () => void) => {
-  const initialState = { name: (name: string, search: string) => true, category: (search: string) => true }
+import { type FilterData } from '../types/type.d';
+interface Prop {
+  reloadWorkers: (filters: Partial<FilterData>) => void
+  cleanData: () => void
+}
+export const useFilters = ({ reloadWorkers, cleanData }: Prop) => {
+  const initialState = { name: '', category: '' }
   const [filters, dispatch] = useReducer(reducerFilter, initialState);
   const [category, setCategory] = useState<string>('init');
 
@@ -22,7 +26,7 @@ export const useFilters = (reloadWorkers: () => void) => {
     reloadWorkers(filters);
   }, 300);
 
-  const handlerSubmit = (e: React.FormEvent<SubmitEvent>) => {
+  const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     reloadWorkers(filters);
   };
@@ -31,8 +35,7 @@ export const useFilters = (reloadWorkers: () => void) => {
     form?.reset();
     dispatch({ type: 'reset' });
     setCategory('init');
-    reloadWorkers(filters);
-  };
-
+    cleanData();
+  }
   return { category, handlerOnChangeName, handlerOnChangeCategory, handlerSubmit, handlerClear }
 };

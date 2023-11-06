@@ -1,7 +1,6 @@
-import { type Person } from '../types'
+import { type Person } from '../types/type.d'
 import { WorkerItems } from './ListWorkers.css'
 import { FavoriteIcon, FavoriteRateIcon } from './Icons'
-import { useWorkers } from '../hooks/useWorkers'
 
 export function ItemList ({ worker }: { worker: Person }) {
   const { name, category, happinessLevel, company } = worker;
@@ -29,11 +28,15 @@ export function ListWorkers ({ listWorkers }: { listWorkers: Person[] }) {
            <>
             <ul >
                 {
-                    listWorkers?.map(worker => (
+                   (listWorkers.length > 0)
+                     ? listWorkers.map(worker => (
                        <ItemList key={worker.id} worker={worker}></ItemList>
-                    ))
+                     ))
+                     : <h1> Do not exist data to show</h1>
+
                 }
             </ul>
+
           </>
   )
 }

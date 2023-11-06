@@ -1,18 +1,18 @@
-import type { Filters, FiltersAction } from '../types/type.d';
+import type { FilterData, FiltersAction } from '../types/type.d';
 
-export const reducerFilter = (state: Filters, action: FiltersAction): Filters => {
+export const reducerFilter = (state: Partial<FilterData>, action: FiltersAction): Partial<FilterData> => {
   switch (action.type) {
     case 'changeName':{
       const filterName = action.payload.name;
-      return { ...state, name: (name: string, search: string = filterName) => name.toLowerCase().includes(search.toLowerCase()) }
+      return { ...state, name: filterName }
     }
 
     case 'changeCategory':{
       const filterCategory = action.payload.category;
-      return { ...state, category: (category: string, search: string = filterCategory) => category === search }
+      return { ...state, category: filterCategory }
     }
     case 'reset':{
-      return { name: (name: string, search: string) => true, category: (search: string) => true }
+      return undefined;
     }
   }
   return state;
