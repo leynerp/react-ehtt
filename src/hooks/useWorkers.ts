@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { getWorkers } from '../service/service';
-import { type FilterData, type Person, type FiltersKey, type Filters } from '../types/type.d';
+import type { FilterData, Person, FiltersKey } from '../types/type.d';
 import { SearchFilters } from '../types/const';
 
 export function useWorkers () {
