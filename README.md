@@ -25,3 +25,4 @@ Requirements
 - Show favorites list in a modal
 - Search favorites by name,category, and company
 - Possibility to remove person of favorite list.
+  -Include redux
