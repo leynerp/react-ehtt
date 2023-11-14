@@ -21,7 +21,9 @@ export const usePagination = ({ setData, listOfElements }: Pagination<Person>) =
 
   const setPagination = (page: number) => {
     if (listOfElements.length > 0) {
-      const paginationList = [...listOfElements].slice((page - 1) * RANGE_PAGE, page * RANGE_PAGE);
+      const indexOfInit = (page - 1) * RANGE_PAGE
+      const indexOfFinish = page * RANGE_PAGE;
+      const paginationList = [...listOfElements].slice(indexOfInit, indexOfFinish);
       setData(paginationList);
     }
   };
