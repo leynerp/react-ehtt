@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { type Pagination, type Person } from '../types/type.d';
 import { RANGE_PAGE } from '../types/const';
 
@@ -18,7 +18,9 @@ export const usePagination = ({ setData, listOfElements }: Pagination<Person>) =
     setActualPage(page);
     setPagination(page);
   };
-
+  useEffect(() => {
+    setPagination(1);
+  }, [listOfElements])
   const setPagination = (page: number) => {
     if (listOfElements.length > 0) {
       const indexOfInit = (page - 1) * RANGE_PAGE
