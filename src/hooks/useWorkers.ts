@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { getWorkers } from '../service/service';
-import { type FilterData, type Person, type FiltersKey, type Filters } from '../types/type.d';
+import { type FilterData, type Person, type FiltersKey } from '../types/type.d';
 import { SearchFilters } from '../types/const';
 
 export function useWorkers () {
   const [workers, setWorkers] = useState<Person[]>();
-  const OriginalListOfWorkers = useRef<Person[]>([]);
+  const originalListOfWorkers = useRef<Person[]>([]);
   const refreshWorkers = (filters: Partial<FilterData>) => {
     if (workers !== undefined && filters !== undefined) {
       const filtersKey: string[] = Object.keys(filters);
-      const searchWorkers = [...OriginalListOfWorkers.current].filter(worker => {
+      const searchWorkers = [...originalListOfWorkers.current].filter(worker => {
         return filtersKey.every(key => {
           return SearchFilters[key as FiltersKey](worker[key as FiltersKey], filters[key as FiltersKey] as string);
         })
@@ -18,14 +18,15 @@ export function useWorkers () {
     }
   }
   const restoreListWorkers = () => {
-    setWorkers(OriginalListOfWorkers.current);
+    setWorkers(originalListOfWorkers.current);
   };
   useEffect(() => {
+    console.log('aaaa');
     getWorkers().then(listPerson => {
       setWorkers(listPerson);
-      OriginalListOfWorkers.current = listPerson;
+      originalListOfWorkers.current = listPerson;
     })
   }, [])
 
-  return { workers, refreshWorkers, setWorkers, restoreListWorkers }
+  return { workers, refreshWorkers, setWorkers, restoreListWorkers, originalListOfWorkers: originalListOfWorkers.current }
 }

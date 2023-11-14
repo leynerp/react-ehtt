@@ -1,6 +1,7 @@
-import { type Person } from '../types/type.d'
+import { type PropWorker, type Person } from '../types/type.d'
 import { WorkerItems } from './ListWorkers.css'
 import { FavoriteIcon, FavoriteRateIcon } from './Icons'
+import { Pagination } from './Pagination';
 
 export function ItemList ({ worker }: { worker: Person }) {
   const { name, category, happinessLevel, company } = worker;
@@ -23,9 +24,11 @@ export function ItemList ({ worker }: { worker: Person }) {
     </>
   )
 }
-export function ListWorkers ({ listWorkers }: { listWorkers: Person[] }) {
+
+export function ListWorkers ({ setWorkers, listWorkers, originalListOfWorkers }: PropWorker) {
   return (
            <>
+           <Pagination originalListOfWorkers={originalListOfWorkers} setWorkers={setWorkers} listWorkers={listWorkers}></Pagination>
             <ul >
                 {
                    (listWorkers.length > 0)

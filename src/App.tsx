@@ -4,7 +4,7 @@ import { WorkersMain } from './component/ListWorkers.css'
 import { SearchBar } from './component/SearchBar'
 import { useWorkers } from './hooks/useWorkers';
 function App () {
-  const { workers, refreshWorkers, restoreListWorkers } = useWorkers();
+  const { workers, refreshWorkers, setWorkers, restoreListWorkers, originalListOfWorkers } = useWorkers();
 
   return (
     <>
@@ -14,7 +14,7 @@ function App () {
         </header>
         <main>
           <WorkersMain>
-              <ListWorkers listWorkers={workers ?? []}></ListWorkers>
+              <ListWorkers originalListOfWorkers={originalListOfWorkers} setWorkers={setWorkers} listWorkers={workers ?? []}></ListWorkers>
           </WorkersMain>
         </main>
 
