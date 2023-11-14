@@ -6,6 +6,7 @@ import { SearchFilters } from '../types/const';
 export function useWorkers () {
   const [workers, setWorkers] = useState<Person[]>();
   const originalListOfWorkers = useRef<Person[]>([]);
+  const [listOfPagination, setListOfPagination] = useState<Person[]>();
   const refreshWorkers = (filters: Partial<FilterData>) => {
     if (workers !== undefined && filters !== undefined) {
       const filtersKey: string[] = Object.keys(filters);
@@ -14,7 +15,7 @@ export function useWorkers () {
           return SearchFilters[key as FiltersKey](worker[key as FiltersKey], filters[key as FiltersKey] as string);
         })
       })
-      setWorkers(searchWorkers);
+      setListOfPagination(searchWorkers);
     }
   }
   const restoreListWorkers = () => {
@@ -23,9 +24,10 @@ export function useWorkers () {
   useEffect(() => {
     getWorkers().then(listPerson => {
       setWorkers(listPerson);
+      setListOfPagination(listPerson);
       originalListOfWorkers.current = listPerson;
     })
   }, [])
 
-  return { workers, refreshWorkers, setWorkers, restoreListWorkers, originalListOfWorkers: originalListOfWorkers.current }
+  return { workers, refreshWorkers, setWorkers, restoreListWorkers, originalListOfWorkers: listOfPagination }
 }
