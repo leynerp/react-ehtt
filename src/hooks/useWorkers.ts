@@ -21,7 +21,6 @@ export function useWorkers () {
     setWorkers(originalListOfWorkers.current);
   };
   useEffect(() => {
-    console.log('aaaa');
     getWorkers().then(listPerson => {
       setWorkers(listPerson);
       originalListOfWorkers.current = listPerson;
