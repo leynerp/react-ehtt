@@ -31,9 +31,13 @@ export type FiltersAction = { type: 'changeName', payload: { name: string } }
 export interface PropWorker {
   setWorkers: React.Dispatch<React.SetStateAction<Person[] | undefined>>
   listWorkers: Person[]
-  originalListOfWorkers: Person[]
+  originalListOfWorkers: Person[] | undefined
 }
 export interface Pagination<T> {
   setData: React.Dispatch<React.SetStateAction<T[] | undefined>>
   listOfElements: T[]
+}
+export interface ShowPagination {
+  init: number
+  end: number
 }
