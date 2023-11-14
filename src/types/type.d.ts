@@ -27,3 +27,13 @@ type FilterData = { [key in FiltersKey]: string } | undefined;
 export type FiltersAction = { type: 'changeName', payload: { name: string } }
 | { type: 'changeCategory', payload: { category: string } }
 | { type: 'reset' }
+
+export interface PropWorker {
+  setWorkers: React.Dispatch<React.SetStateAction<Person[] | undefined>>
+  listWorkers: Person[]
+  originalListOfWorkers: Person[]
+}
+export interface Pagination<T> {
+  setData: React.Dispatch<React.SetStateAction<T[] | undefined>>
+  listOfElements: T[]
+}
