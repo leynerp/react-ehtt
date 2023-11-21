@@ -41,3 +41,16 @@ export interface ShowPagination {
   init: number
   end: number
 }
+
+export type FunctionsSortType = { type: 'sortString', sorterFunction: (a: string, b: string) => number }
+| { type: 'sortNumber', sorterFunction: (a: number, b: number) => number }
+
+export interface Sorter {
+  field: string
+  asc: boolean
+  id: string
+  sorterFunction: FunctionsSortType
+  active: boolean
+}
+
+export interface SorterAction { type: string, payload: { id: string } }

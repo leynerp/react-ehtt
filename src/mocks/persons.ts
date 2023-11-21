@@ -23,6 +23,26 @@ export const listOfPersons: Person [] = [
   },
   {
     id: crypto.randomUUID(),
+    name: 'Carpe',
+    category: Category.manager,
+    happinessLevel: 4,
+    company: {
+      name: 'Google LLC',
+      logo: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
+    name: 'Leste',
+    category: Category.manager,
+    happinessLevel: 1,
+    company: {
+      name: 'Google LLC',
+      logo: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
     name: 'Juan',
     category: Category.employed,
     happinessLevel: 2,
@@ -70,6 +90,36 @@ export const listOfPersons: Person [] = [
   },
   {
     id: crypto.randomUUID(),
+    name: 'Armando',
+    category: Category.manager,
+    happinessLevel: 3,
+    company: {
+      name: 'Netflix, Inc',
+      logo: 'https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
+    name: 'josefa',
+    category: Category.employed,
+    happinessLevel: 10,
+    company: {
+      name: 'Netflix, Inc',
+      logo: 'https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
+    name: 'Ramon',
+    category: Category.employed,
+    happinessLevel: 5,
+    company: {
+      name: 'Netflix, Inc',
+      logo: 'https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
     name: 'Carla',
     category: Category.employed,
     happinessLevel: 9,
@@ -83,6 +133,46 @@ export const listOfPersons: Person [] = [
     name: 'Yailen',
     category: Category.manager,
     happinessLevel: 6,
+    company: {
+      name: 'YouTube, LLC',
+      logo: 'https://s.ytimg.com/yts/img/favicon_144-vfliLAfaB.png'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
+    name: 'Roger',
+    category: Category.manager,
+    happinessLevel: 2,
+    company: {
+      name: 'YouTube, LLC',
+      logo: 'https://s.ytimg.com/yts/img/favicon_144-vfliLAfaB.png'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
+    name: 'Glas',
+    category: Category.employed,
+    happinessLevel: 8,
+    company: {
+      name: 'YouTube, LLC',
+      logo: 'https://s.ytimg.com/yts/img/favicon_144-vfliLAfaB.png'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
+    name: 'Peter',
+    category: Category.manager,
+    happinessLevel: 1,
+    company: {
+      name: 'YouTube, LLC',
+      logo: 'https://s.ytimg.com/yts/img/favicon_144-vfliLAfaB.png'
+    }
+  },
+  {
+    id: crypto.randomUUID(),
+    name: 'velas',
+    category: Category.manager,
+    happinessLevel: 8,
     company: {
       name: 'YouTube, LLC',
       logo: 'https://s.ytimg.com/yts/img/favicon_144-vfliLAfaB.png'

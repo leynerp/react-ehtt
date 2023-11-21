@@ -1,5 +1,5 @@
 import { type PropWorker, type Person } from '../types/type.d'
-import { WorkerItems } from './ListWorkers.css'
+import { WorkerItems } from './cssComponent/ListWorkers.css'
 import { FavoriteIcon, FavoriteRateIcon } from './Icons'
 import { Pagination } from './Pagination';
 
@@ -28,7 +28,7 @@ export function ItemList ({ worker }: { worker: Person }) {
 export function ListWorkers ({ setWorkers, listWorkers, originalListOfWorkers }: PropWorker) {
   return (
            <>
-           <Pagination originalListOfWorkers={originalListOfWorkers} setWorkers={setWorkers} listWorkers={listWorkers}></Pagination>
+
             <ul >
                 {
                    (listWorkers.length > 0)
@@ -39,7 +39,7 @@ export function ListWorkers ({ setWorkers, listWorkers, originalListOfWorkers }:
 
                 }
             </ul>
-
+          <Pagination originalListOfWorkers={originalListOfWorkers} setWorkers={setWorkers} listWorkers={listWorkers}></Pagination>
           </>
   )
 }
