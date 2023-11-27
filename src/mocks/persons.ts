@@ -13,7 +13,7 @@ export const listOfPersons: Person [] = [
   },
   {
     id: crypto.randomUUID(),
-    name: 'jose',
+    name: 'Leyner',
     category: Category.manager,
     happinessLevel: 4,
     company: {

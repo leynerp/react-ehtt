@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useSorter } from '../hooks/useSorter';
-import { type Sorter } from '../types/type';
+import { type PropWorker, type Sorter } from '../types/type';
 import { SortListWorkersSection } from './cssComponent/SortListWorkers.css';
 interface Props {
   sortElement: Sorter
@@ -8,24 +9,26 @@ interface Props {
 }
 const SortItems = ({ sortElement, dispatchActiveFieldSort, dispatchChangeOrder }: Props) => {
   const { id, field, asc } = sortElement;
+  const [isSelected, setIsSelected] = useState(false);
   const handleActiveFieldSort = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const target = e.target as HTMLButtonElement;
+    setIsSelected(!isSelected)
+    const target = (e.target as HTMLButtonElement).parentNode as HTMLElement;
     dispatchActiveFieldSort(target.id)
   };
   const handleChangeOrder = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const target = e.target as HTMLButtonElement;
+    const target = (e.target as HTMLButtonElement).parentNode as HTMLElement;
     dispatchChangeOrder(target.id)
   };
   return <>
-         <article>
-          <button onClick={handleActiveFieldSort} id={id} type="button">{field}</button>
-          <button onClick={handleChangeOrder } type="button">{(asc) ? '↑' : '↓'}</button>
+         <article id={id}>
+          <button style={ isSelected ? { backgroundColor: 'green', color: 'white' } : { backgroundColor: 'white', color: 'black' } } onClick={handleActiveFieldSort} type="button">{field}</button>
+          <button style={ isSelected ? { backgroundColor: 'green', color: 'white' } : { backgroundColor: 'white', color: 'black' } } onClick={handleChangeOrder } type="button">{(asc) ? '↑' : '↓'}</button>
         </article>
    </>
 };
 
-export const SortListWorkers = () => {
-  const { sorter, SorterFields, dispatchActiveFieldSort, dispatchChangeOrder } = useSorter();
+export const SortListWorkers = ({ setWorkers, listWorkers }: PropWorker) => {
+  const { SorterFields, dispatchActiveFieldSort, dispatchChangeOrder } = useSorter({ setWorkers, listWorkers });
   return <>
         <h2 style={{ fontSize: '1.2em' }}>Sorter option</h2>
 

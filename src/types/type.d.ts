@@ -49,8 +49,9 @@ export interface Sorter {
   field: string
   asc: boolean
   id: string
-  sorterFunction: FunctionsSortType
+  sorterDefinition: FunctionsSortType
   active: boolean
+  reference: keyof Person
 }
 
 export interface SorterAction { type: string, payload: { id: string } }

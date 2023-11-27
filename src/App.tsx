@@ -12,7 +12,7 @@ function App () {
         <h1 >Test</h1>
         <header>
            <SearchBar reloadWorkers={refreshWorkers} cleanData={restoreListWorkers}></SearchBar>
-           <SortListWorkers></SortListWorkers>
+           <SortListWorkers setWorkers={setWorkers} listWorkers={workers}></SortListWorkers>
         </header>
         <main>
           <WorkersMain>
