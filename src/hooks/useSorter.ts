@@ -1,11 +1,12 @@
 import { useEffect, useReducer } from 'react';
 import { sortReducer } from '../reducer/sort';
 import { SorterFields } from '../types/const';
-import { type Person, type PropWorker } from '../types/type';
-
-export const useSorter = ({ setWorkers, listWorkers }: Pick<PropWorker, 'setWorkers' | 'listWorkers'>) => {
+import { type Person } from '../types/type';
+import { sorterWorker } from '../reduxtk/slice/workersSlice'
+import { useAppDispatch } from './useReduxType';
+export const useSorter = () => {
   const [sorter, dispatch] = useReducer(sortReducer, SorterFields)
-
+  const workersDispatch = useAppDispatch();
   const dispatchActiveFieldSort = (id: string) => {
     dispatch({ type: 'changeStatus', payload: { id } })
   };
@@ -17,18 +18,7 @@ export const useSorter = ({ setWorkers, listWorkers }: Pick<PropWorker, 'setWork
     .map(sortField => (sortField.asc) ? sortField.sorterDefinition.sorterFunction(a[sortField.reference], b[sortField.reference]) : -sortField.sorterDefinition.sorterFunction(a[sortField.reference], b[sortField.reference]));
   useEffect(() => {
     if (sorter.filter(sort => sort.active).length !== 0) {
-      if (listWorkers !== undefined) {
-        const sortWorker = [...listWorkers].sort((a, b) => {
-          const comparisonArray = makeSortFunction(a, b);
-          for (let i = 0; i < comparisonArray.length; i++) {
-            if (comparisonArray[i] !== 0) {
-              return comparisonArray[i];
-            }
-          }
-          return 0;
-        });
-        setWorkers(sortWorker);
-      }
+      workersDispatch(sorterWorker(makeSortFunction))
     }
   }, [sorter])
   return { sorter, SorterFields, dispatchActiveFieldSort, dispatchChangeOrder }

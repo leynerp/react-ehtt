@@ -27,8 +27,8 @@ const SortItems = ({ sortElement, dispatchActiveFieldSort, dispatchChangeOrder }
    </>
 };
 
-export const SortListWorkers = ({ setWorkers, listWorkers }: PropWorker) => {
-  const { SorterFields, dispatchActiveFieldSort, dispatchChangeOrder } = useSorter({ setWorkers, listWorkers });
+export const SortListWorkers = () => {
+  const { SorterFields, dispatchActiveFieldSort, dispatchChangeOrder } = useSorter();
   return <>
         <h2 style={{ fontSize: '1.2em' }}>Sorter option</h2>
 

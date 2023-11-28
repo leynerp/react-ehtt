@@ -28,10 +28,23 @@ export const workersSlice = createSlice({
       })
       state.persons = searchWorkers;
       return state;
+    },
+    sorterWorker: (state, action: PayloadAction<(a: Person, b: Person) => number[]>) => {
+      if (state.persons !== undefined) {
+        state.persons.sort((a, b) => {
+          const comparisonArray = action.payload(a, b);
+          for (let i = 0; i < comparisonArray.length; i++) {
+            if (comparisonArray[i] !== 0) {
+              return comparisonArray[i];
+            }
+          }
+          return 0;
+        });
+      }
     }
   }
 
 })
 
-export const { setWorkers, filterWorkers, restoreOriginalWorker } = workersSlice.actions;
+export const { setWorkers, filterWorkers, restoreOriginalWorker, sorterWorker } = workersSlice.actions;
 export default workersSlice.reducer;

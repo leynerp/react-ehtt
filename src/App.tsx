@@ -3,6 +3,7 @@ import { ListWorkers } from './component/ListWorkers'
 import { WorkersMain } from './component/cssComponent/ListWorkers.css'
 import { SearchBar } from './component/SearchBar'
 import { useWorkers } from './hooks/useWorkers';
+import { SortListWorkers } from './component/SortListWorkers';
 
 function App () {
   const { workers } = useWorkers();
@@ -10,8 +11,12 @@ function App () {
     <>
         <h1 >Test</h1>
         <header>
-           { <SearchBar></SearchBar>
-           /* <SortListWorkers setWorkers={setWorkers} listWorkers={workers}></SortListWorkers> */}
+           {
+             <>
+            <SearchBar></SearchBar>
+            <SortListWorkers ></SortListWorkers>
+            </>
+           }
         </header>
         <main>
           <WorkersMain>
