@@ -1,4 +1,4 @@
-import { type PropWorker, type Person } from '../types/type.d'
+import { type Person, type Workers } from '../types/type.d'
 import { WorkerItems } from './cssComponent/ListWorkers.css'
 import { FavoriteIcon, FavoriteRateIcon } from './Icons'
 import { Pagination } from './Pagination';
@@ -25,21 +25,21 @@ export function ItemList ({ worker }: { worker: Person }) {
   )
 }
 
-export function ListWorkers ({ setWorkers, listWorkers, originalListOfWorkers }: PropWorker) {
+export function ListWorkers ({ persons }: Omit<Workers, 'originalsPersons'>) {
   return (
            <>
 
             <ul >
                 {
-                   (listWorkers.length > 0)
-                     ? listWorkers.map(worker => (
+                   (persons.length > 0)
+                     ? persons.map(worker => (
                        <ItemList key={worker.id} worker={worker}></ItemList>
                      ))
                      : <h1> Do not exist data to show</h1>
 
                 }
             </ul>
-          <Pagination originalListOfWorkers={originalListOfWorkers} setWorkers={setWorkers} listWorkers={listWorkers}></Pagination>
+          {/* <Pagination originalListOfWorkers={originalListOfWorkers} setWorkers={setWorkers} listWorkers={listWorkers}></Pagination> */}
           </>
   )
 }

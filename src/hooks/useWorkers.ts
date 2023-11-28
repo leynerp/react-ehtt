@@ -1,33 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { getWorkers } from '../service/service';
-import { type FilterData, type Person, type FiltersKey } from '../types/type.d';
-import { SearchFilters } from '../types/const';
+import { setWorkers } from '../reduxtk/slice/workersSlice';
+import { useAppDispatch, useAppSelector } from './useReduxType';
 
 export function useWorkers () {
-  const [workers, setWorkers] = useState<Person[]>();
-  const originalListOfWorkers = useRef<Person[]>([]);
-  const [listOfPagination, setListOfPagination] = useState<Person[]>();
-  const refreshWorkers = (filters: Partial<FilterData>) => {
-    if (workers !== undefined && filters !== undefined) {
-      const filtersKey: string[] = Object.keys(filters);
-      const searchWorkers = [...originalListOfWorkers.current].filter(worker => {
-        return filtersKey.every(key => {
-          return SearchFilters[key as FiltersKey](worker[key as FiltersKey], filters[key as FiltersKey] as string);
-        })
-      })
-      setListOfPagination(searchWorkers);
-    }
-  }
-  const restoreListWorkers = () => {
-    setWorkers(originalListOfWorkers.current);
-  };
+  const workers = useAppSelector(state => state.worker);
+  const workersDispatch = useAppDispatch();
   useEffect(() => {
     getWorkers().then(listPerson => {
-      setWorkers(listPerson);
-      setListOfPagination(listPerson);
-      originalListOfWorkers.current = listPerson;
+      workersDispatch(setWorkers({ persons: listPerson, originalsPersons: listPerson }))
     })
   }, [])
 
-  return { workers, refreshWorkers, setWorkers, restoreListWorkers, originalListOfWorkers: listOfPagination }
+  return { workers }
 }

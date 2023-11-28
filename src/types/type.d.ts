@@ -15,6 +15,10 @@ export enum Category {
   manager = 'Manager'
 }
 
+export interface Workers {
+  persons: Person[]
+  originalsPersons: Person[]
+}
 export interface Filters {
   name: (name: string, search: string) => boolean
   category: (category: string, search: string) => boolean
