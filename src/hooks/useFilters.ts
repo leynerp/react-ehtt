@@ -1,12 +1,11 @@
 import { useReducer, useState } from 'react';
 import debounce from 'just-debounce-it';
 import { reducerFilter } from '../reducer/filters';
-import { type FilterData } from '../types/type.d';
-interface Prop {
-  reloadWorkers: (filters: Partial<FilterData>) => void
-  cleanData: () => void
-}
-export const useFilters = ({ reloadWorkers, cleanData }: Prop) => {
+import { filterWorkers, restoreOriginalWorker } from '../reduxtk/slice/workersSlice'
+import { useAppDispatch } from './useReduxType';
+
+export const useFilters = () => {
+  const workersDispatch = useAppDispatch();
   const initialState = { name: '', category: '' }
   const [filters, dispatch] = useReducer(reducerFilter, initialState);
   const [category, setCategory] = useState<string>('init');
@@ -23,19 +22,20 @@ export const useFilters = ({ reloadWorkers, cleanData }: Prop) => {
 
   const debounceSearch = debounce((search: string) => {
     dispatch({ type: 'changeName', payload: { name: search } });
-    reloadWorkers(filters);
+    console.log(search);
+    workersDispatch(filterWorkers(filters));
   }, 300);
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    reloadWorkers(filters);
+    workersDispatch(filterWorkers(filters));
   };
   const handlerClear = () => {
     const form = document.getElementById('searchForm') as HTMLFormElement;
     form?.reset();
     dispatch({ type: 'reset' });
     setCategory('init');
-    cleanData();
+    workersDispatch(restoreOriginalWorker());
   }
   return { category, handlerOnChangeName, handlerOnChangeCategory, handlerSubmit, handlerClear }
 };

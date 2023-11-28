@@ -18,20 +18,4 @@ export const SorterFields: Sorter[] = [
   { field: 'Happiness level', id: 'sort_happy', reference: 'happinessLevel', asc: true, sorterDefinition: { type: 'sortNumber', sorterFunction: (a: number, b: number) => a - b }, active: false }
 ]
 
-/* const mapF = (a, b) => SorterFields
-  .filter(sorter => sorter.active)
-  .map((v, i) => v.sorterDefinition.sorterFunction(a[v.id], b[v.id]));
-
-const datasorted = data.sort((a, b) => {
-  const comparisonArray = mapF(a, b);
-  console.log(comparisonArray);
-  for (let i = 0; i < comparisonArray.length; i++) {
-    if (comparisonArray[i] !== 0) {
-      return comparisonArray[i];
-    }
-  }
-  return 0;
-});
-console.log(-1 || -255)
-console.log(datasorted) */
 export const RANGE_PAGE: number = 5;

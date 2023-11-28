@@ -1,12 +1,9 @@
-import { Category, type FilterData } from '../types/type.d';
+import { Category } from '../types/type.d';
 import { useFilters } from '../hooks/useFilters';
 import { SearchBarForm } from './cssComponent/SearchBar.css';
-interface Prop {
-  reloadWorkers: (filters: Partial<FilterData>) => void
-  cleanData: () => void
-}
-export const SearchBar = ({ reloadWorkers, cleanData }: Prop) => {
-  const { category, handlerOnChangeName, handlerOnChangeCategory, handlerSubmit, handlerClear } = useFilters({ reloadWorkers, cleanData })
+
+export const SearchBar = () => {
+  const { category, handlerOnChangeName, handlerOnChangeCategory, handlerSubmit, handlerClear } = useFilters();
   return (
     <>
        <SearchBarForm id='searchForm' onSubmit={handlerSubmit}>

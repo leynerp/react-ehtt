@@ -14,6 +14,10 @@ export const workersSlice = createSlice({
     setWorkers: (state, action: PayloadAction<Workers>) => {
       return action.payload;
     },
+    restoreOriginalWorker: (state) => {
+      state.persons = state.originalsPersons;
+      return state;
+    },
     filterWorkers: (state, action: PayloadAction<Partial<FilterData>>) => {
       if (action.payload === undefined) return
       const filtersKey: string[] = Object.keys(action.payload);
@@ -29,5 +33,5 @@ export const workersSlice = createSlice({
 
 })
 
-export const { setWorkers, filterWorkers } = workersSlice.actions;
+export const { setWorkers, filterWorkers, restoreOriginalWorker } = workersSlice.actions;
 export default workersSlice.reducer;
