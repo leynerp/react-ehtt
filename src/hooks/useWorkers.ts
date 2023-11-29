@@ -8,7 +8,7 @@ export function useWorkers () {
   const workersDispatch = useAppDispatch();
   useEffect(() => {
     getWorkers().then(listPerson => {
-      workersDispatch(setWorkers({ persons: listPerson, originalsPersons: listPerson }))
+      workersDispatch(setWorkers({ persons: listPerson, originalsPersons: listPerson, listPaginatedPersons: [] }))
     })
   }, [])
 

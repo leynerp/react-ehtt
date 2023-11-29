@@ -25,7 +25,7 @@ export function ItemList ({ worker }: { worker: Person }) {
   )
 }
 
-export function ListWorkers ({ persons }: Omit<Workers, 'originalsPersons'>) {
+export function ListWorkers ({ listPaginatedPersons: persons }: Pick<Workers, 'listPaginatedPersons'>) {
   return (
            <>
 
@@ -39,7 +39,7 @@ export function ListWorkers ({ persons }: Omit<Workers, 'originalsPersons'>) {
 
                 }
             </ul>
-          {/* <Pagination originalListOfWorkers={originalListOfWorkers} setWorkers={setWorkers} listWorkers={listWorkers}></Pagination> */}
+          {<Pagination ></Pagination>}
           </>
   )
 }

@@ -18,6 +18,7 @@ export enum Category {
 export interface Workers {
   persons: Person[]
   originalsPersons: Person[]
+  listPaginatedPersons: Person[]
 }
 export interface Filters {
   name: (name: string, search: string) => boolean
@@ -57,5 +58,5 @@ export interface Sorter {
   active: boolean
   reference: keyof Person
 }
- 
+
 export interface SorterAction { type: string, payload: { id: string } }

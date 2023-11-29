@@ -20,7 +20,7 @@ function App () {
         </header>
         <main>
           <WorkersMain>
-              <ListWorkers persons={workers.persons ?? []}></ListWorkers>
+              <ListWorkers listPaginatedPersons={workers.listPaginatedPersons ?? []}></ListWorkers>
           </WorkersMain>
         </main>
 

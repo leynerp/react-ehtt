@@ -1,10 +1,11 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { type FiltersKey, type FilterData, type Person, type Workers } from '../../types/type';
+import { type FiltersKey, type FilterData, type Person, type Workers, type ShowPagination } from '../../types/type';
 import { SearchFilters } from '../../types/const';
 
 const initialWorkersState: Workers = {
   persons: [],
-  originalsPersons: []
+  originalsPersons: [],
+  listPaginatedPersons: []
 }
 
 export const workersSlice = createSlice({
@@ -41,10 +42,15 @@ export const workersSlice = createSlice({
           return 0;
         });
       }
+    },
+    paginateListOfWorker: (state, action: PayloadAction<ShowPagination>) => {
+      state.listPaginatedPersons = state.persons.slice(action.payload.init, action.payload.end);
+      return state;
     }
+
   }
 
 })
 
-export const { setWorkers, filterWorkers, restoreOriginalWorker, sorterWorker } = workersSlice.actions;
+export const { setWorkers, filterWorkers, restoreOriginalWorker, sorterWorker, paginateListOfWorker } = workersSlice.actions;
 export default workersSlice.reducer;

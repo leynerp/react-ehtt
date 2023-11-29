@@ -1,14 +1,16 @@
 import { useState, useMemo, useEffect } from 'react';
-import { type ShowPagination, type Pagination, type Person } from '../types/type.d';
+import { type ShowPagination } from '../types/type.d';
 import { RANGE_PAGE } from '../types/const';
-
-export const usePagination = ({ setData, listOfElements }: Pagination<Person>) => {
+import { paginateListOfWorker } from '../reduxtk/slice/workersSlice';
+import { useAppDispatch, useAppSelector } from './useReduxType';
+export const usePagination = () => {
   const [actualPage, setActualPage] = useState(1);
   const [showPage, setShowPage] = useState<ShowPagination>({ init: 1, end: RANGE_PAGE });
-
+  const { persons: workers } = useAppSelector(state => state.worker);
+  const workerDispatch = useAppDispatch();
   const pageCountPagination = useMemo(() => {
-    if (listOfElements !== undefined) { return Math.ceil(listOfElements.length / RANGE_PAGE) }
-  }, [listOfElements])
+    if (workers !== undefined) { return Math.ceil(workers.length / RANGE_PAGE) }
+  }, [workers])
   const handlePreviousPage = () => {
     const page = actualPage - 1;
     setActualPage(page);
@@ -21,16 +23,15 @@ export const usePagination = ({ setData, listOfElements }: Pagination<Person>) =
   };
   useEffect(() => {
     setPagination(1);
-  }, [listOfElements])
+  }, [workers])
   const setPagination = (page: number) => {
-    if (listOfElements !== undefined) {
+    if (workers !== undefined) {
       const indexOfInit = (page - 1) * RANGE_PAGE
       const indexOfFinish = page * RANGE_PAGE;
-      const paginationList = [...listOfElements].slice(indexOfInit, indexOfFinish);
+      workerDispatch(paginateListOfWorker({ init: indexOfInit, end: indexOfFinish }));
       setShowPage({ init: indexOfInit, end: indexOfFinish });
-      setData(paginationList);
     }
   };
 
-  return { actualPage, pageCountPagination, handlePreviousPage, handleNextPage, showPage }
+  return { actualPage, pageCountPagination, handlePreviousPage, handleNextPage, showPage, workers }
 };
