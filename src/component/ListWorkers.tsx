@@ -1,10 +1,10 @@
-import { type Person, type Workers } from '../types/type.d'
+import { type PersonsLists, type Person, type PersonTypeList } from '../types/type.d'
 import { WorkerItems } from './cssComponent/ListWorkers.css'
-import { FavoriteIcon, FavoriteRateIcon } from './Icons'
+import { Favorite } from './Favorite'
 import { Pagination } from './Pagination';
 
 export function ItemList ({ worker }: { worker: Person }) {
-  const { name, category, happinessLevel, company } = worker;
+  const { id, name, category, happinessLevel, company } = worker;
 
   return (
     <>
@@ -16,8 +16,7 @@ export function ItemList ({ worker }: { worker: Person }) {
             <img src={company.logo} alt={company.name}></img>
             </header>
             <section>
-              <FavoriteIcon ></FavoriteIcon>
-              <FavoriteRateIcon ></FavoriteRateIcon>
+              <Favorite idelement={id}></Favorite>
             </section>
 
         </WorkerItems>
@@ -25,7 +24,7 @@ export function ItemList ({ worker }: { worker: Person }) {
   )
 }
 
-export function ListWorkers ({ listPaginatedPersons: persons }: Pick<Workers, 'listPaginatedPersons'>) {
+export function ListWorkers ({ listPaginatedPersons: persons, typeList }: { listPaginatedPersons: Person[], typeList: PersonTypeList }) {
   return (
            <>
 
@@ -39,7 +38,7 @@ export function ListWorkers ({ listPaginatedPersons: persons }: Pick<Workers, 'l
 
                 }
             </ul>
-          {<Pagination ></Pagination>}
+          {<Pagination typeList={typeList}></Pagination>}
           </>
   )
 }

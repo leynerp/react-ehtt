@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react';
 import { sortReducer } from '../reducer/sort';
 import { SorterFields } from '../types/const';
 import { type Person } from '../types/type';
-import { sorterWorker } from '../reduxtk/slice/workersSlice'
+import { sorterWorker, restoreOriginalWorker } from '../reduxtk/slice/workersSlice'
 import { useAppDispatch } from './useReduxType';
 export const useSorter = () => {
   const [sorter, dispatch] = useReducer(sortReducer, SorterFields)
@@ -18,8 +18,8 @@ export const useSorter = () => {
     .map(sortField => (sortField.asc) ? sortField.sorterDefinition.sorterFunction(a[sortField.reference], b[sortField.reference]) : -sortField.sorterDefinition.sorterFunction(a[sortField.reference], b[sortField.reference]));
   useEffect(() => {
     if (sorter.filter(sort => sort.active).length !== 0) {
-      workersDispatch(sorterWorker(makeSortFunction))
-    }
+      workersDispatch(sorterWorker(makeSortFunction));
+    } else { workersDispatch(restoreOriginalWorker()); }
   }, [sorter])
   return { sorter, SorterFields, dispatchActiveFieldSort, dispatchChangeOrder }
 };

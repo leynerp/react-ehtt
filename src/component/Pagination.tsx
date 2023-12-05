@@ -1,7 +1,8 @@
 import { usePagination } from '../hooks/usePagination';
+import { type PersonTypeList } from '../types/type';
 import { PaginationDiv } from './cssComponent/Pagination.css';
-export const Pagination = () => {
-  const { actualPage, pageCountPagination, handlePreviousPage, handleNextPage, showPage, workers } = usePagination();
+export const Pagination = ({ typeList }: { typeList: PersonTypeList }) => {
+   const { actualPage, pageCountPagination, handlePreviousPage, handleNextPage, showPage, workers } = usePagination(typeList);
 
   return <>
        <PaginationDiv>

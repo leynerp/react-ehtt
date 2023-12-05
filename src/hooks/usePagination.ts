@@ -1,12 +1,14 @@
 import { useState, useMemo, useEffect } from 'react';
-import { type ShowPagination } from '../types/type.d';
+import { type PersonTypeList, type PaginationAction } from '../types/type.d';
 import { RANGE_PAGE } from '../types/const';
 import { paginateListOfWorker } from '../reduxtk/slice/workersSlice';
 import { useAppDispatch, useAppSelector } from './useReduxType';
-export const usePagination = () => {
+export const usePagination = (typeList: PersonTypeList) => {
   const [actualPage, setActualPage] = useState(1);
-  const [showPage, setShowPage] = useState<ShowPagination>({ init: 1, end: RANGE_PAGE });
-  const { persons: workers } = useAppSelector(state => state.worker);
+  const [showPage, setShowPage] = useState<Omit<PaginationAction, 'typeList'>>({ init: 1, end: RANGE_PAGE });
+  const workersState = useAppSelector(state => state.worker);
+  const { persons: workers } = workersState.filter(data => data.type === typeList)[0].listsPersons;
+
   const workerDispatch = useAppDispatch();
   const pageCountPagination = useMemo(() => {
     if (workers !== undefined) { return Math.ceil(workers.length / RANGE_PAGE) }
@@ -28,7 +30,7 @@ export const usePagination = () => {
     if (workers !== undefined) {
       const indexOfInit = (page - 1) * RANGE_PAGE
       const indexOfFinish = page * RANGE_PAGE;
-      workerDispatch(paginateListOfWorker({ init: indexOfInit, end: indexOfFinish }));
+      workerDispatch(paginateListOfWorker({ init: indexOfInit, end: indexOfFinish, typeList }));
       setShowPage({ init: indexOfInit, end: indexOfFinish });
     }
   };

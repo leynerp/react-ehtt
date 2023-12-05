@@ -1,0 +1,19 @@
+.addFavorite{
+    fill: red;
+    width: 30px;
+    height: 30px;   
+}
+.addFavorite:hover {
+    transform: translate(0.5rem, -0.5rem);    
+    scale: 1.25;
+    cursor: pointer;
+}
+.quitFavorite {   
+    width: 30px;    
+}
+.quitFavorite:hover {
+    transform: translate(-0.5rem, -0.5rem);
+    scale: 1.25;
+    cursor: pointer;
+}
+

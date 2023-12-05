@@ -13,6 +13,7 @@ const SortItems = ({ sortElement, dispatchActiveFieldSort, dispatchChangeOrder }
   const handleActiveFieldSort = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setIsSelected(!isSelected)
     const target = (e.target as HTMLButtonElement).parentNode as HTMLElement;
+    console.log(target.id);
     dispatchActiveFieldSort(target.id)
   };
   const handleChangeOrder = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

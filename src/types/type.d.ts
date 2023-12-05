@@ -15,11 +15,19 @@ export enum Category {
   manager = 'Manager'
 }
 
-export interface Workers {
+export type PersonTypeList = 'workers' | 'favorite'
+
+export interface PersonsLists {
   persons: Person[]
   originalsPersons: Person[]
   listPaginatedPersons: Person[]
 }
+
+export interface PersonsState {
+  type: PersonTypeList
+  listsPersons: PersonsLists
+}
+
 export interface Filters {
   name: (name: string, search: string) => boolean
   category: (category: string, search: string) => boolean
@@ -27,24 +35,22 @@ export interface Filters {
 
 type FiltersKey = keyof Filters;
 
-type FilterData = { [key in FiltersKey]: string } | undefined;
+type FilterData = { [key in Partial<FiltersKey>]: string } | undefined;
+type FilterAction = { filter: FilterData, type: PersonTypeList } | undefined;
 
 export type FiltersAction = { type: 'changeName', payload: { name: string } }
 | { type: 'changeCategory', payload: { category: string } }
 | { type: 'reset' }
 
-export interface PropWorker {
-  setWorkers: React.Dispatch<React.SetStateAction<Person[] | undefined>>
-  listWorkers: Person[]
-  originalListOfWorkers: Person[] | undefined
-}
 export interface Pagination<T> {
   setData: React.Dispatch<React.SetStateAction<T[] | undefined>>
   listOfElements: T[]
 }
-export interface ShowPagination {
+export interface PaginationAction {
   init: number
   end: number
+  typeList: PersonTypeList
+
 }
 
 export type FunctionsSortType = { type: 'sortString', sorterFunction: (a: string, b: string) => number }

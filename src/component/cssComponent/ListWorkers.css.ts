@@ -6,6 +6,7 @@ export const WorkersMain = styled.main`
      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
      gap: 20px;
      justify-content: center;
+     margin-top: 2px;
    }
     
 `;
@@ -40,8 +41,10 @@ export const WorkerItems = styled.li`
       justify-content: space-between;
     } 
 
-    &:hover{
-      background-color: lightgray;
-      transition: 5ms ease-in-out;
+    &:hover {     
+      filter: brightness(1.15);
+      box-shadow: 0 0 40px 40px rgb(0 0 0 / .2);
+      z-index: 100;
+      border: 1px solid green;  
     }
 `;

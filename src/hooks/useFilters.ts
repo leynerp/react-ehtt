@@ -6,7 +6,7 @@ import { useAppDispatch } from './useReduxType';
 
 export const useFilters = () => {
   const workersDispatch = useAppDispatch();
-  const initialState = { name: '', category: '' }
+  const initialState = { name: '', category: '', type: undefined }
   const [filters, dispatch] = useReducer(reducerFilter, initialState);
   const [category, setCategory] = useState<string>('init');
 
