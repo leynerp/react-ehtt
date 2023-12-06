@@ -1,10 +1,10 @@
 import { useEffect, useReducer } from 'react';
 import { sortReducer } from '../reducer/sort';
 import { SorterFields } from '../types/const';
-import { type Person } from '../types/type';
+import type { PersonTypeList, Person } from '../types/type';
 import { sorterWorker, restoreOriginalWorker } from '../reduxtk/slice/workersSlice'
 import { useAppDispatch } from './useReduxType';
-export const useSorter = () => {
+export const useSorter = (typeList: PersonTypeList) => {
   const [sorter, dispatch] = useReducer(sortReducer, SorterFields)
   const workersDispatch = useAppDispatch();
   const dispatchActiveFieldSort = (id: string) => {
@@ -18,7 +18,7 @@ export const useSorter = () => {
     .map(sortField => (sortField.asc) ? sortField.sorterDefinition.sorterFunction(a[sortField.reference], b[sortField.reference]) : -sortField.sorterDefinition.sorterFunction(a[sortField.reference], b[sortField.reference]));
   useEffect(() => {
     if (sorter.filter(sort => sort.active).length !== 0) {
-      workersDispatch(sorterWorker(makeSortFunction));
+      workersDispatch(sorterWorker({ sortFunc: makeSortFunction, typeList }));
     } else { workersDispatch(restoreOriginalWorker()); }
   }, [sorter])
   return { sorter, SorterFields, dispatchActiveFieldSort, dispatchChangeOrder }

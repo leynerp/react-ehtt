@@ -5,6 +5,8 @@ export const Modal = styled.dialog`
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
+  height: 80%;
+  width: 60%;
   align-items: center;
   border-radius: 0.75rem; 
   border-width: 0px;
@@ -13,7 +15,7 @@ export const Modal = styled.dialog`
     0px 8px 8px -4px rgba(16, 24, 40, 0.04); 
 
     p{
-     font-size:20px;
+     font-size:20px;   
      margin-top:0;     
      font-weight: bold;
     }

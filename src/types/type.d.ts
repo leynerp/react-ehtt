@@ -24,7 +24,7 @@ export interface PersonsLists {
 }
 
 export interface PersonsState {
-  type: PersonTypeList
+  typeList: PersonTypeList
   listsPersons: PersonsLists
 }
 
@@ -35,8 +35,8 @@ export interface Filters {
 
 type FiltersKey = keyof Filters;
 
-type FilterData = { [key in Partial<FiltersKey>]: string } | undefined;
-type FilterAction = { filter: FilterData, type: PersonTypeList } | undefined;
+type FilterData = { [key in FiltersKey]: string } | undefined;
+type FilterAction = { filter: Partial<FilterData>, type: PersonTypeList } | undefined;
 
 export type FiltersAction = { type: 'changeName', payload: { name: string } }
 | { type: 'changeCategory', payload: { category: string } }
@@ -66,3 +66,8 @@ export interface Sorter {
 }
 
 export interface SorterAction { type: string, payload: { id: string } }
+export interface SorterActionRedux {
+  sortFunc: (a: Person, b: Person) => number[]
+  typeList: PersonTypeList
+
+}

@@ -1,4 +1,4 @@
-import { type PersonsLists, type Person, type PersonTypeList } from '../types/type.d'
+import type { Person, PersonTypeList } from '../types/type.d'
 import { WorkerItems } from './cssComponent/ListWorkers.css'
 import { Favorite } from './Favorite'
 import { Pagination } from './Pagination';
@@ -32,7 +32,7 @@ export function ListWorkers ({ listPaginatedPersons: persons, typeList }: { list
                 {
                    (persons.length > 0)
                      ? persons.map(worker => (
-                       <ItemList key={worker.id} worker={worker}></ItemList>
+                       <ItemList key={`${typeList}-${worker.id}`} worker={worker}></ItemList>
                      ))
                      : <h1> Do not exist data to show</h1>
 

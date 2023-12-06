@@ -1,9 +1,9 @@
-import { Category } from '../types/type.d';
+import { Category, type PersonTypeList } from '../types/type.d';
 import { useFilters } from '../hooks/useFilters';
 import { SearchBarForm } from './cssComponent/SearchBar.css';
-
-export const SearchBar = () => {
-  const { category, handlerOnChangeName, handlerOnChangeCategory, handlerSubmit, handlerClear } = useFilters();
+export const SearchBar = ({ typeList }: { typeList: PersonTypeList }) => {
+  const { category, handlerOnChangeName, handlerOnChangeCategory, handlerSubmit, handlerClear } = useFilters(typeList);
+  // TODO enable and disabled the clear button
   return (
     <>
        <SearchBarForm id='searchForm' onSubmit={handlerSubmit}>

@@ -4,15 +4,6 @@ export const SearchFilters: Filters = {
   category: (category: string, search: string) => category === search
 } as const
 
-const data = [
-  { id: 7, name: 'Asterdam', population: 24, country: 'Aaa' },
-  { id: 12, name: 'The Hague', population: 36, country: 'Aaa' },
-  { id: 43, name: 'Rotterdam', population: 600000, country: 'Netherlands' },
-  { id: 5, name: 'Berlin', population: 3000000, country: 'Germany' },
-  { id: 42, name: 'Dsseldorf', population: 550000, country: 'Bmm' },
-  { id: 44, name: 'Stuttgard', population: 600000, country: 'Germany' }
-];
-
 export const SorterFields: Sorter[] = [
   { field: 'Name', id: 'sort_name', reference: 'name', asc: true, sorterDefinition: { type: 'sortString', sorterFunction: (a: string, b: string) => a.localeCompare(b) }, active: false },
   { field: 'Happiness level', id: 'sort_happy', reference: 'happinessLevel', asc: true, sorterDefinition: { type: 'sortNumber', sorterFunction: (a: number, b: number) => a - b }, active: false }

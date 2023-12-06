@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSorter } from '../hooks/useSorter';
-import { type PropWorker, type Sorter } from '../types/type';
+import { type PersonTypeList, type PropWorker, type Sorter } from '../types/type';
 import { SortListWorkersSection } from './cssComponent/SortListWorkers.css';
 interface Props {
   sortElement: Sorter
@@ -28,8 +28,8 @@ const SortItems = ({ sortElement, dispatchActiveFieldSort, dispatchChangeOrder }
    </>
 };
 
-export const SortListWorkers = () => {
-  const { SorterFields, dispatchActiveFieldSort, dispatchChangeOrder } = useSorter();
+export const SortListWorkers = ({ typeList }: { typeList: PersonTypeList }) => {
+  const { SorterFields, dispatchActiveFieldSort, dispatchChangeOrder } = useSorter(typeList);
   return <>
         <h2 style={{ fontSize: '1.2em' }}>Sorter option</h2>
 

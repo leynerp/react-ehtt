@@ -16,8 +16,8 @@ function App () {
         <header>
            {
              <>
-            <SearchBar></SearchBar>
-            <SortListWorkers ></SortListWorkers>
+            <SearchBar typeList='workers'></SearchBar>
+            <SortListWorkers typeList={'workers'}></SortListWorkers>
             </>
            }
           <button

@@ -7,7 +7,7 @@ export const usePagination = (typeList: PersonTypeList) => {
   const [actualPage, setActualPage] = useState(1);
   const [showPage, setShowPage] = useState<Omit<PaginationAction, 'typeList'>>({ init: 1, end: RANGE_PAGE });
   const workersState = useAppSelector(state => state.worker);
-  const { persons: workers } = workersState.filter(data => data.type === typeList)[0].listsPersons;
+  const { persons: workers } = workersState.filter(data => data.typeList === typeList)[0].listsPersons;
 
   const workerDispatch = useAppDispatch();
   const pageCountPagination = useMemo(() => {

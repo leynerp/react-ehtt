@@ -1,4 +1,4 @@
-import { addFavorite } from '../reduxtk/slice/workersSlice'
+import { addFavorite, removeFavorite } from '../reduxtk/slice/workersSlice'
 import { useAppDispatch } from './useReduxType';
 export const useFavorites = () => {
   const dispatchAction = useAppDispatch();
@@ -6,5 +6,9 @@ export const useFavorites = () => {
     const idWorker = (e.target as SVGSVGElement).ownerSVGElement?.id.split('/')[1];
     if (idWorker !== undefined) { dispatchAction(addFavorite({ id: idWorker })) }
   };
-  return { handleFavorite };
+  const handleRemoveFavorite = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    const idWorker = (e.target as SVGSVGElement).attributes?.id.value.split('/')[1];
+    if (idWorker !== undefined) { dispatchAction(removeFavorite({ id: idWorker })) }
+  };
+  return { handleFavorite, handleRemoveFavorite };
 };

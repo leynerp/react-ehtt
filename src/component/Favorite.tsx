@@ -1,10 +1,13 @@
 import svgStyle from '../css/svg.module.css'
 import { useFavorites } from '../hooks/useFavorites'
-export const Favorite = ({ idelement }: { idelement: string }) => {
-  const { handleFavorite } = useFavorites();
+export const Favorite = ({ idElement }: { idElement: string }) => {
+  // TODO enable and disabled the add and remove favorite button
+  // TODO enable and disabled the show favorite button if do not exist element in favorite list
+
+  const { handleFavorite, handleRemoveFavorite } = useFavorites();
   return (
     <>
-   <svg onClick={handleFavorite} className={svgStyle.addFavorite} fill="#e00b0b" height="64px" width="64px" version="1.1" id={`addFav/${idelement}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlSpace="preserve">
+   <svg onClick={handleFavorite} className={svgStyle.addFavorite} fill="#e00b0b" height="64px" width="64px" version="1.1" id={`addFav/${idElement}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlSpace="preserve">
 
             <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
 
@@ -13,7 +16,7 @@ export const Favorite = ({ idelement }: { idelement: string }) => {
             <g id="SVGRepo_iconCarrier"> <g> <g> <path d="M372.87,8.348c-49.003,0-92.083,25.336-116.87,63.62c-24.786-38.283-67.867-63.62-116.87-63.62 C62.29,8.348,0,70.639,0,147.478c0,33.479,11.828,64.194,31.529,88.201L256,503.652L480.471,235.68 C500.172,211.673,512,180.959,512,147.478C512,70.638,449.71,8.348,372.87,8.348z"/> </g> </g> </g>
 
     </svg>
-     <svg className={svgStyle.quitFavorite} id={`deleteFav/${idelement}`} viewBox="0 0 28.00 28.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#e70808" transform="matrix(1, 0, 0, 1, 0, 0)" strokeWidth="0.00028">
+     <svg onClick={handleRemoveFavorite} className={svgStyle.quitFavorite} id={`deleteFav/${idElement}`} viewBox="0 0 28.00 28.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#e70808" transform="matrix(1, 0, 0, 1, 0, 0)" strokeWidth="0.00028">
 
        <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
 
