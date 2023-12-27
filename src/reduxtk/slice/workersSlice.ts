@@ -13,8 +13,8 @@ const initialWorkersState: PersonsState[] = [
   {
     typeList: 'favorite',
     listsPersons: {
-      persons: [],
-      originalsPersons: [],
+      persons: JSON.parse(localStorage.getItem('favorite') ?? '[]'),
+      originalsPersons: JSON.parse(localStorage.getItem('favorite') ?? '[]'),
       listPaginatedPersons: []
     }
   }
@@ -70,7 +70,11 @@ export const workersSlice = createSlice({
       const { persons } = state.filter(({ typeList }) => typeList === 'workers')[0].listsPersons;
       const findPerson = persons.find(person => person.id === action.payload.id) as Person;
       const { persons: favoritesPersons, originalsPersons } = state.filter(({ typeList }) => typeList === 'favorite')[0].listsPersons;
-      if (findPerson !== undefined) { favoritesPersons.push(findPerson); originalsPersons.push(findPerson); }
+      console.log(action.payload);
+      if (findPerson !== undefined) {
+        favoritesPersons.push(findPerson);
+        originalsPersons.push(findPerson);
+      }
     },
     removeFavorite: (state, action: PayloadAction<{ id: string }>) => {
       const stateFavorite = state.filter(({ typeList }) => typeList === 'favorite')[0];

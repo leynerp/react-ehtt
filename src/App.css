@@ -16,6 +16,30 @@ li button {
   font-weight: 500;
 
 }
+.showFavorites {
+  position: fixed;
+  top: 10px;
+  right: 40px;
+  display: flex;
+  gap:15px;
+  align-items: center;
+}
+.showFavorites p {
+  font-size: 20px;
+}
+.circle{
+  background: rgb(17, 143, 185);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+.circle p{
+  font-size: 30px;
+}
 menu button:hover {
   border-color: #646cff;
 }

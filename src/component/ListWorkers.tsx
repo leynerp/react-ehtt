@@ -3,7 +3,7 @@ import { WorkerItems } from './cssComponent/ListWorkers.css'
 import { Favorite } from './Favorite'
 import { Pagination } from './Pagination';
 
-export function ItemList ({ worker }: { worker: Person }) {
+export function ItemList ({ worker, typeList }: { worker: Person, typeList: PersonTypeList }) {
   const { id, name, category, happinessLevel, company } = worker;
 
   return (
@@ -15,9 +15,9 @@ export function ItemList ({ worker }: { worker: Person }) {
             <p>{happinessLevel}</p>
             <img src={company.logo} alt={company.name}></img>
             </header>
-            <section>
-              <Favorite idelement={id}></Favorite>
-            </section>
+            {(typeList === 'workers') && (<section>
+              <Favorite idElement={id}></Favorite>
+            </section>)}
 
         </WorkerItems>
     </>
@@ -32,13 +32,13 @@ export function ListWorkers ({ listPaginatedPersons: persons, typeList }: { list
                 {
                    (persons.length > 0)
                      ? persons.map(worker => (
-                       <ItemList key={`${typeList}-${worker.id}`} worker={worker}></ItemList>
+                       <ItemList typeList={typeList} key={`${typeList}-${worker.id}`} worker={worker}></ItemList>
                      ))
                      : <h1> Do not exist data to show</h1>
 
                 }
             </ul>
-          {<Pagination typeList={typeList}></Pagination>}
+          {(persons.length > 0) && <Pagination typeList={typeList}></Pagination>}
           </>
   )
 }

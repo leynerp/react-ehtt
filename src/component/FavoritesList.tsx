@@ -3,6 +3,7 @@ import { ListWorkers } from './ListWorkers';
 import { SearchBar } from './SearchBar';
 import { Modal, Overlay } from './cssComponent/FavoritesList.ccs';
 import { WorkersMain } from './cssComponent/ListWorkers.css';
+// TODO change some style in the modal
 interface ModalProps {
   modal: { setShowModal: React.Dispatch<React.SetStateAction<boolean>>
     showModal: boolean }

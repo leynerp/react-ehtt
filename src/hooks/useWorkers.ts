@@ -7,6 +7,7 @@ import type { PersonTypeList } from '../types/type';
 export function useWorkers (typeList: PersonTypeList) {
   const workersState = useAppSelector(state => state.worker);
   const personList = workersState.filter(data => data.typeList === typeList)[0].listsPersons;
+  const workersInFavoriteList = workersState.filter(data => data.typeList === 'favorite')[0].listsPersons.persons;
   const workersDispatch = useAppDispatch();
   useEffect(() => {
     getWorkers().then(listPerson => {
@@ -14,5 +15,5 @@ export function useWorkers (typeList: PersonTypeList) {
     })
   }, [])
 
-  return { personList }
+  return { personList, workersInFavoriteList }
 }

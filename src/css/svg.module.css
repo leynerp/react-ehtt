@@ -1,19 +1,69 @@
-.addFavorite{
+.addFavoriteButton {
+    background-color: #242424;
+    padding: 0;
+    transition: none;
+    margin-bottom: 20px;
+   
+}
+.addFavoriteButton  > svg {
     fill: red;
     width: 30px;
-    height: 30px;   
+    height: 30px;
+
 }
-.addFavorite:hover {
-    transform: translate(0.5rem, -0.5rem);    
+.addFavoriteButtonDisabled {
+    background-color: #242424;
+    padding: 0;
+    transition: none;
+    margin-bottom: 20px;
+    pointer-events: none;
+}
+.addFavoriteButtonDisabled > svg {
+    fill: rgb(131, 128, 128);
+    width: 30px;
+    height: 30px;
+}
+
+.addFavoriteButton:hover {
+    border-color: #242424;
+    transform: translate(0.5rem, -0.5rem);
     scale: 1.25;
     cursor: pointer;
 }
-.quitFavorite {   
-    width: 30px;    
+
+.removeFavoriteButton {
+    background-color: #242424;
+    padding: 0;
+    transition: none;
+    margin-bottom: 20px;
 }
-.quitFavorite:hover {
+.removeFavoriteButton > svg {
+    fill:red; 
+    width: 30px;
+    height: 30px;
+
+}
+.removeFavoriteButtonDisabled{
+    background-color: #242424;
+    padding: 0;
+    transition: none;
+    margin-bottom: 20px;
+    pointer-events: none;
+}
+
+
+.removeFavoriteButtonDisabled > svg {
+    fill: rgb(131, 128, 128);
+    width: 30px;
+    height: 30px;
+}
+
+.removeFavoriteButton:hover {
+    border-color: #242424;
     transform: translate(-0.5rem, -0.5rem);
     scale: 1.25;
     cursor: pointer;
 }
+
+
 
